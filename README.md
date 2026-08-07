@@ -76,7 +76,7 @@ Workflow `.github/workflows/deploy-pages.yml` автоматически про�
 Адрес сайта для этого репозитория:
 
 ```text
-https://oksanalenskaa115-source.github.io/english-game-library./
+https://oksanalenskaa115-source.github.io/english-game-library/
 ```
 
 Если Pages ещё не включён, откройте в GitHub `Settings → Pages` и в поле `Source` выберите `GitHub Actions`. Ход публикации отображается во вкладке `Actions`.
