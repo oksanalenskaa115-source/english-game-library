@@ -1,0 +1,104 @@
+.card {
+  padding: clamp(1rem, 3vw, 2rem);
+  border: 2px solid var(--color-gold-300);
+  border-radius: var(--radius-large);
+  color: var(--color-brown-950);
+  background: var(--surface-stone);
+  box-shadow: var(--shadow-panel), inset 0 0 0 4px rgb(109 61 11 / 18%);
+}
+
+.sentenceBlock {
+  padding: 1rem;
+  border: 1px solid rgb(109 61 11 / 30%);
+  border-radius: var(--radius-medium);
+  background: rgb(255 248 232 / 50%);
+  text-align: center;
+}
+
+.sentenceBlock p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 4vw, 2.45rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.sentenceBlock > span {
+  display: inline-block;
+  margin-top: 0.35rem;
+  color: var(--color-teal-900);
+  font-weight: 900;
+}
+
+.options {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.option {
+  display: grid;
+  min-height: 3.5rem;
+  grid-template-columns: 2.5rem 1fr 2rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.45rem 0.7rem;
+  border: 2px solid var(--color-gold-700);
+  border-radius: var(--radius-small);
+  color: var(--color-brown-950);
+  background: var(--color-sand-100);
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 150ms ease, filter 150ms ease;
+}
+
+.option:hover:not(:disabled) {
+  filter: brightness(1.05);
+  transform: translateX(3px);
+}
+
+.option:disabled {
+  cursor: default;
+}
+
+.optionLabel {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 2px solid var(--color-gold-500);
+  border-radius: 50%;
+  color: var(--color-cream);
+  background: var(--color-teal-900);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+
+.optionText {
+  min-width: 0;
+}
+
+.correct {
+  border-color: var(--color-teal-700);
+  background: #b9df83;
+  box-shadow: 0 0 0 3px rgb(18 167 165 / 28%);
+}
+
+.wrong {
+  border-color: var(--color-orange-500);
+  background: #ffd0a6;
+}
+
+.resultIcon {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.revealed {
+  margin: 0.75rem 0 0;
+  color: #8d250f;
+  font-weight: 800;
+  text-align: center;
+}

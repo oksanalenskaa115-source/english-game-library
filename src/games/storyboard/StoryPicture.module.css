@@ -1,0 +1,13 @@
+.picture {
+  width: 100%;
+  aspect-ratio: 0.533 / 1;
+  border-radius: 0.5rem;
+  background-repeat: no-repeat;
+  background-size: 500% 200%;
+  box-shadow: 0 5px 12px rgb(17 11 8 / 35%);
+}
+
+.compact {
+  max-width: 8rem;
+  margin-inline: auto;
+}

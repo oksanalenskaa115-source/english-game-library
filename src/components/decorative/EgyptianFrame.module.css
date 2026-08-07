@@ -1,0 +1,26 @@
+.frame {
+  position: relative;
+  border: 1px solid var(--color-gold-300);
+  border-radius: var(--radius-large);
+  color: var(--color-brown-950);
+  background: var(--surface-stone);
+  box-shadow: var(--shadow-panel), inset 0 0 0 4px rgb(109 61 11 / 24%);
+}
+
+.frame::before,
+.frame::after {
+  position: absolute;
+  width: 3rem;
+  height: 0.45rem;
+  top: 0.65rem;
+  background: repeating-linear-gradient(90deg, var(--color-teal-900) 0 0.5rem, var(--color-gold-500) 0.5rem 1rem);
+  content: '';
+}
+
+.frame::before {
+  left: 0.75rem;
+}
+
+.frame::after {
+  right: 0.75rem;
+}

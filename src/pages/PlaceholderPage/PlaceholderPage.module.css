@@ -1,0 +1,37 @@
+.page {
+  display: grid;
+  min-height: calc(100vh - 5.5rem);
+  place-items: center;
+  padding: 2rem 1rem;
+}
+
+.panel {
+  width: min(100%, 38rem);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--color-teal-900);
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.panel h1 {
+  margin: 0.5rem 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 7vw, 3.5rem);
+}
+
+.homeLink {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-small);
+  color: var(--color-teal-950);
+  font-weight: 800;
+}

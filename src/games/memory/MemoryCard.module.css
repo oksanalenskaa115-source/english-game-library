@@ -1,0 +1,116 @@
+.card {
+  min-width: 0;
+  aspect-ratio: 1.28;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-medium);
+  background: transparent;
+  perspective: 900px;
+  cursor: pointer;
+}
+
+.card:disabled {
+  cursor: default;
+}
+
+.inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  box-shadow: 0 8px 16px rgb(17 11 8 / 35%);
+  transform-style: preserve-3d;
+  transition: transform 420ms ease;
+}
+
+.faceUp .inner {
+  transform: rotateY(180deg);
+}
+
+.back,
+.front {
+  position: absolute;
+  display: grid;
+  inset: 0;
+  overflow: hidden;
+  place-items: center;
+  border: 3px solid var(--color-gold-500);
+  border-radius: inherit;
+  backface-visibility: hidden;
+}
+
+.back {
+  padding: 0.3rem;
+  background: var(--color-teal-950);
+}
+
+.backArtwork {
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--radius-medium) - 0.25rem);
+  background-image: var(--memory-card-image);
+  background-repeat: no-repeat;
+  background-position: 4.3% 18.5%;
+  background-size: 451% 438%;
+}
+
+.front {
+  align-content: center;
+  gap: 0.2rem;
+  padding: 0.55rem;
+  color: var(--color-brown-950);
+  background:
+    linear-gradient(90deg, transparent 0 7%, rgb(154 93 19 / 12%) 7% 8%, transparent 8% 92%, rgb(154 93 19 / 12%) 92% 93%, transparent 93%),
+    var(--surface-stone);
+  text-align: center;
+  transform: rotateY(180deg);
+}
+
+.front strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3vw, 2rem);
+}
+
+.formLabel {
+  color: var(--color-teal-900);
+  font-size: clamp(0.55rem, 1.2vw, 0.72rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.matchLabel {
+  color: var(--color-teal-700);
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.matched .front {
+  border-color: var(--color-teal-500);
+  box-shadow: inset 0 0 0 3px var(--color-gold-300), 0 0 1rem rgb(18 167 165 / 55%);
+}
+
+.card:not(:disabled):hover .inner {
+  filter: brightness(1.08);
+  transform: translateY(-3px);
+}
+
+.card.faceUp:not(:disabled):hover .inner {
+  transform: rotateY(180deg) translateY(-3px);
+}
+
+@media (max-width: 43.6875rem) {
+  .back,
+  .front {
+    border-width: 2px;
+  }
+
+  .front {
+    padding: 0.25rem;
+  }
+
+  .matchLabel {
+    display: none;
+  }
+}

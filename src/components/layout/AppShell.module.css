@@ -1,0 +1,12 @@
+.shell {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: min(100%, var(--content-width));
+  margin: 0 auto;
+}

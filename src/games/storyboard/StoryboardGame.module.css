@@ -1,0 +1,52 @@
+.page { width: min(100%, 84rem); margin: 0 auto; padding: 1rem clamp(0.6rem, 2vw, 1.5rem) 2rem; }
+.gameHeader { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem; padding: 0.8rem 1rem; border: 2px solid var(--color-gold-300); border-radius: var(--radius-large); background: var(--surface-dark); box-shadow: var(--shadow-panel); }
+.homeButton,
+.controls button { min-height: 2.75rem; padding: 0.5rem 0.75rem; border: 1px solid var(--color-gold-300); border-radius: var(--radius-small); color: var(--color-cream); background: var(--color-teal-900); font-weight: 800; cursor: pointer; }
+.titleBlock { min-width: 0; text-align: center; }
+.titleBlock p,
+.titleBlock h1,
+.titleBlock span { display: block; margin: 0; }
+.titleBlock p { color: var(--color-gold-300); font-family: var(--font-display); font-size: 0.9rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
+.titleBlock h1 { font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 2rem); line-height: 1.1; }
+.titleBlock span { font-size: 0.78rem; }
+.controls { display: flex; gap: 0.45rem; }
+.statusBar { display: grid; grid-template-columns: auto minmax(7rem, 1fr) auto; align-items: center; gap: 0.8rem; margin: 1rem 0; }
+.stageLabel { color: var(--color-cream); font-family: var(--font-display); font-size: 1.15rem; font-weight: 900; }
+.progressTrack { height: 0.7rem; overflow: hidden; border: 1px solid var(--color-gold-300); border-radius: 99px; background: var(--color-teal-950); }
+.progressTrack span { display: block; height: 100%; background: linear-gradient(90deg, var(--color-teal-500), var(--color-gold-300)); transition: width 250ms ease; }
+.stats { display: flex; overflow: hidden; border: 1px solid var(--color-gold-300); border-radius: var(--radius-small); color: var(--color-brown-950); background: var(--surface-stone); }
+.stats > span { min-width: 4.5rem; padding: 0.35rem 0.5rem; text-align: center; }
+.stats > span + span { border-left: 1px solid rgb(109 61 11 / 25%); }
+.stats small,
+.stats strong { display: block; }
+.stats small { color: var(--color-teal-900); font-size: 0.58rem; font-weight: 900; text-transform: uppercase; }
+.stats strong { font-family: var(--font-display); font-size: 1rem; }
+.modeChoice { width: min(100%, 48rem); margin: 2rem auto; padding: 1.5rem; border: 2px solid var(--color-gold-300); border-radius: var(--radius-large); color: var(--color-brown-950); background: var(--surface-stone); text-align: center; box-shadow: var(--shadow-panel); }
+.modeChoice > p,
+.modeChoice h2 { margin: 0; }
+.modeChoice > p { color: var(--color-teal-900); font-weight: 900; text-transform: uppercase; }
+.modeChoice h2 { font-family: var(--font-display); font-size: 2rem; }
+.modeChoice > div { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+.modeChoice button { min-height: 9rem; padding: 1rem; border: 2px solid var(--color-teal-900); border-radius: var(--radius-medium); color: var(--color-brown-950); background: var(--color-sand-100); cursor: pointer; }
+.modeChoice button:hover { border-color: var(--color-gold-700); transform: translateY(-2px); }
+.modeChoice button strong,
+.modeChoice button span { display: block; }
+.modeChoice button strong { margin-bottom: 0.45rem; color: var(--color-teal-900); font-family: var(--font-display); font-size: 1.3rem; }
+
+@media (max-width: 65rem) {
+  .gameHeader { grid-template-columns: auto 1fr; }
+  .controls { grid-column: 1 / -1; justify-content: center; }
+  .statusBar { grid-template-columns: auto 1fr; }
+  .stats { grid-column: 1 / -1; justify-self: center; }
+}
+
+@media (max-width: 40rem) {
+  .page { padding-inline: 0.4rem; }
+  .homeButton span,
+  .titleBlock span { display: none; }
+  .controls { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .controls button { min-width: 0; padding-inline: 0.3rem; font-size: 0.72rem; }
+  .stats { width: 100%; }
+  .stats > span { min-width: 0; flex: 1; padding-inline: 0.2rem; }
+  .modeChoice > div { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,33 @@
+:root {
+  color-scheme: dark;
+
+  --color-teal-950: #052f33;
+  --color-teal-900: #064950;
+  --color-teal-700: #087b82;
+  --color-teal-500: #12a7a5;
+  --color-gold-700: #9a5d13;
+  --color-gold-500: #d99a2b;
+  --color-gold-300: #f4ca63;
+  --color-sand-100: #fff0ca;
+  --color-sand-300: #e7c584;
+  --color-brown-950: #28140f;
+  --color-brown-800: #4b2719;
+  --color-orange-500: #e67527;
+  --color-cream: #fff8e8;
+  --color-white: #ffffff;
+  --color-black: #110b08;
+
+  --surface-dark: rgb(5 47 51 / 92%);
+  --surface-stone: linear-gradient(145deg, #fff0ca, #d9b66f);
+  --shadow-panel: 0 18px 50px rgb(17 11 8 / 34%);
+  --shadow-gold: 0 0 0 2px #6d3d0b, 0 0 0 5px #d99a2b, 0 8px 18px rgb(17 11 8 / 35%);
+
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: Inter, Aptos, 'Segoe UI', sans-serif;
+
+  --radius-small: 0.5rem;
+  --radius-medium: 0.9rem;
+  --radius-large: 1.4rem;
+  --content-width: 90rem;
+  --focus-ring: 0 0 0 3px var(--color-cream), 0 0 0 6px var(--color-teal-500);
+}

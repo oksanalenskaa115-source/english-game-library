@@ -1,0 +1,17 @@
+{
+  "name": "English Game Library",
+  "short_name": "English Games",
+  "description": "Ancient Egypt adventures for practising Past Simple.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#063f43",
+  "theme_color": "#063f43",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

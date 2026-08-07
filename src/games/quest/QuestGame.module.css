@@ -1,0 +1,372 @@
+.page {
+  width: min(100%, 76rem);
+  margin: 0 auto;
+  padding: 1rem clamp(0.75rem, 2.5vw, 2rem) 2rem;
+}
+
+.gameHeader {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--color-gold-300);
+  border-radius: var(--radius-large);
+  background: var(--surface-dark);
+  box-shadow: var(--shadow-panel);
+}
+
+.homeButton,
+.controls button,
+.nextButton,
+.pauseOverlay button,
+.finishedActions button {
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-gold-300);
+  border-radius: var(--radius-small);
+  color: var(--color-cream);
+  background: var(--color-teal-900);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.titleBlock {
+  min-width: 0;
+  text-align: center;
+}
+
+.titleBlock p,
+.titleBlock h1,
+.titleBlock span {
+  display: block;
+  margin: 0;
+}
+
+.titleBlock p {
+  color: var(--color-gold-300);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.titleBlock h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  line-height: 1;
+}
+
+.titleBlock span {
+  font-size: 0.78rem;
+}
+
+.controls {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.statusRow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.questionCount {
+  color: var(--color-cream);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 900;
+  text-shadow: 0 2px 3px var(--color-black);
+}
+
+.stats {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--color-gold-300);
+  border-radius: var(--radius-small);
+  color: var(--color-brown-950);
+  background: var(--surface-stone);
+}
+
+.stats > span {
+  min-width: 5rem;
+  padding: 0.4rem 0.6rem;
+  text-align: center;
+}
+
+.stats > span + span {
+  border-left: 1px solid rgb(109 61 11 / 25%);
+}
+
+.stats small,
+.stats strong {
+  display: block;
+}
+
+.stats small {
+  color: var(--color-teal-900);
+  font-size: 0.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.stats strong {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+}
+
+.hearts {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  font-size: 1.7rem;
+  filter: drop-shadow(0 2px 2px rgb(17 11 8 / 55%));
+}
+
+.heartFull {
+  color: #d94b3f;
+}
+
+.heartEmpty {
+  color: #7e7064;
+}
+
+.rule {
+  width: min(100%, 54rem);
+  margin: 0 auto 1rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--color-gold-300);
+  border-radius: var(--radius-small);
+  color: var(--color-brown-950);
+  background: #fff0ca;
+  text-align: center;
+}
+
+.rule strong,
+.rule b {
+  color: var(--color-teal-900);
+}
+
+.challengeArea {
+  position: relative;
+  width: min(100%, 48rem);
+  margin: 0 auto;
+}
+
+.message {
+  display: grid;
+  min-height: 3.25rem;
+  grid-template-columns: 2.2rem 1fr;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--color-gold-300);
+  border-radius: var(--radius-small);
+  color: var(--color-brown-950);
+  background: var(--color-sand-100);
+}
+
+.message > span {
+  display: grid;
+  width: 2.2rem;
+  height: 2.2rem;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--color-cream);
+  background: var(--color-teal-900);
+  font-weight: 900;
+}
+
+.message p {
+  margin: 0;
+  font-weight: 700;
+}
+
+.hint {
+  border-color: var(--color-orange-500);
+}
+
+.nextButton {
+  display: block;
+  min-width: 12rem;
+  margin: 0.8rem 0 0 auto;
+  box-shadow: var(--shadow-gold);
+}
+
+.pauseOverlay {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  min-height: 22rem;
+  padding: 1rem;
+  border: 2px solid var(--color-gold-300);
+  border-radius: var(--radius-large);
+  color: var(--color-cream);
+  background: rgb(5 47 51 / 97%);
+  text-align: center;
+}
+
+.pauseOverlay > span {
+  display: grid;
+  width: 4rem;
+  height: 4rem;
+  place-items: center;
+  border: 2px solid var(--color-gold-300);
+  border-radius: 50%;
+  color: var(--color-gold-300);
+  font-size: 1.5rem;
+}
+
+.pauseOverlay h2 {
+  margin: 0.7rem 0 0;
+  font-family: var(--font-display);
+  font-size: 2rem;
+}
+
+.pauseOverlay p {
+  margin: 0.2rem 0 1rem;
+}
+
+.finished {
+  padding: 1.4rem;
+  border: 2px solid var(--color-gold-300);
+  border-radius: var(--radius-large);
+  color: var(--color-brown-950);
+  background: var(--surface-stone);
+  box-shadow: var(--shadow-panel);
+  text-align: center;
+}
+
+.chest {
+  display: grid;
+  width: 5rem;
+  height: 4rem;
+  place-items: center;
+  margin: 0 auto 0.5rem;
+  border: 3px solid var(--color-gold-500);
+  border-radius: var(--radius-small);
+  background: var(--color-brown-800);
+  box-shadow: 0 0 2rem var(--color-gold-300);
+  font-size: 2rem;
+}
+
+.finished > p,
+.finished h2 {
+  margin: 0;
+}
+
+.finished > p {
+  color: var(--color-teal-900);
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.finished h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+}
+
+.finished dl {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 1rem 0;
+}
+
+.finished dt {
+  color: var(--color-teal-900);
+  font-size: 0.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.finished dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.finishedActions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+@media (max-width: 53rem) {
+  .gameHeader {
+    grid-template-columns: auto 1fr;
+  }
+
+  .controls {
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+
+  .statusRow {
+    grid-template-columns: 1fr auto;
+  }
+
+  .stats {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 43.6875rem) {
+  .page {
+    padding-inline: 0.5rem;
+  }
+
+  .homeButton span,
+  .titleBlock span {
+    display: none;
+  }
+
+  .controls {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .controls button {
+    min-width: 0;
+    padding-inline: 0.3rem;
+    font-size: 0.72rem;
+  }
+
+  .statusRow {
+    gap: 0.5rem;
+  }
+
+  .stats {
+    width: 100%;
+  }
+
+  .stats > span {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .rule {
+    font-size: 1rem;
+  }
+
+  .finished dl {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+}
