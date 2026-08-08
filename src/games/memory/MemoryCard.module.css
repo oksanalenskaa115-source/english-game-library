@@ -1,6 +1,8 @@
 .card {
   min-width: 0;
-  aspect-ratio: 1.28;
+  min-height: 0;
+  height: 100%;
+  aspect-ratio: auto;
   padding: 0;
   border: 0;
   border-radius: var(--radius-medium);
@@ -113,4 +115,6 @@
   .matchLabel {
     display: none;
   }
+
+  .front strong { font-size: clamp(0.72rem, 4vw, 1.15rem); }
 }

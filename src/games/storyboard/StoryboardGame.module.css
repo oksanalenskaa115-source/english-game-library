@@ -1,4 +1,4 @@
-.page { width: min(100%, 84rem); margin: 0 auto; padding: 1rem clamp(0.6rem, 2vw, 1.5rem) 2rem; }
+.page { display: grid; width: min(100%, 84rem); height: 100dvh; grid-template-rows: auto auto minmax(0, 1fr); gap: 0.35rem; margin: 0 auto; padding: 0.4rem clamp(0.4rem, 1.5vw, 1rem); overflow: hidden; }
 .gameHeader { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem; padding: 0.8rem 1rem; border: 2px solid var(--color-gold-300); border-radius: var(--radius-large); background: var(--surface-dark); box-shadow: var(--shadow-panel); }
 .homeButton,
 .controls button { min-height: 2.75rem; padding: 0.5rem 0.75rem; border: 1px solid var(--color-gold-300); border-radius: var(--radius-small); color: var(--color-cream); background: var(--color-teal-900); font-weight: 800; cursor: pointer; }
@@ -10,7 +10,8 @@
 .titleBlock h1 { font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 2rem); line-height: 1.1; }
 .titleBlock span { font-size: 0.78rem; }
 .controls { display: flex; gap: 0.45rem; }
-.statusBar { display: grid; grid-template-columns: auto minmax(7rem, 1fr) auto; align-items: center; gap: 0.8rem; margin: 1rem 0; }
+.statusBar { display: grid; grid-template-columns: auto minmax(7rem, 1fr) auto; align-items: center; gap: 0.8rem; margin: 0; }
+.page > section + section { min-height: 0; height: 100%; overflow: hidden; }
 .stageLabel { color: var(--color-cream); font-family: var(--font-display); font-size: 1.15rem; font-weight: 900; }
 .progressTrack { height: 0.7rem; overflow: hidden; border: 1px solid var(--color-gold-300); border-radius: 99px; background: var(--color-teal-950); }
 .progressTrack span { display: block; height: 100%; background: linear-gradient(90deg, var(--color-teal-500), var(--color-gold-300)); transition: width 250ms ease; }
@@ -41,7 +42,7 @@
 }
 
 @media (max-width: 40rem) {
-  .page { padding-inline: 0.4rem; }
+  .page { gap: 0.22rem; padding: 0.22rem; }
   .homeButton span,
   .titleBlock span { display: none; }
   .controls { display: grid; grid-template-columns: repeat(3, 1fr); }
@@ -49,4 +50,13 @@
   .stats { width: 100%; }
   .stats > span { min-width: 0; flex: 1; padding-inline: 0.2rem; }
   .modeChoice > div { grid-template-columns: 1fr; }
+}
+
+@media (max-height: 43rem) {
+  .gameHeader { padding-block: 0.3rem; }
+  .titleBlock span { display: none; }
+  .homeButton,
+  .controls button { min-height: 2.15rem; padding-block: 0.2rem; }
+  .statusBar { gap: 0.4rem; }
+  .stageLabel { font-size: 0.85rem; }
 }

@@ -1,7 +1,12 @@
 .page {
+  display: grid;
   width: min(100%, 80rem);
+  height: 100dvh;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  gap: 0.4rem;
   margin: 0 auto;
-  padding: 1rem clamp(0.75rem, 2.5vw, 2rem) 2rem;
+  padding: 0.45rem clamp(0.5rem, 2vw, 1.5rem);
+  overflow: hidden;
 }
 
 .gameHeader {
@@ -80,7 +85,7 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 0.65rem;
   width: min(100%, 50rem);
-  margin: 1rem auto;
+  margin: 0 auto;
 }
 
 .stats div {
@@ -114,8 +119,10 @@
 .boardArea {
   position: relative;
   width: min(100%, 58rem);
+  height: 100%;
+  min-height: 0;
   margin: 0 auto;
-  padding: clamp(0.75rem, 2vw, 1.4rem);
+  padding: clamp(0.35rem, 1vw, 0.75rem);
   border: 2px solid var(--color-gold-300);
   border-radius: var(--radius-large);
   background: rgb(5 47 51 / 88%);
@@ -124,9 +131,13 @@
 
 .board {
   display: grid;
+  height: 100%;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(0.5rem, 1.4vw, 0.9rem);
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.3rem, 0.8vw, 0.6rem);
 }
+
+.board > * { height: 100%; aspect-ratio: auto; }
 
 .pauseOverlay {
   position: absolute;
@@ -165,7 +176,7 @@
 
 .feedback {
   min-height: 1.5rem;
-  margin: 0.75rem auto;
+  margin: 0 auto;
   color: var(--color-cream);
   font-weight: 800;
   text-align: center;
@@ -259,7 +270,8 @@
 
 @media (max-width: 43.6875rem) {
   .page {
-    padding-inline: 0.5rem;
+    gap: 0.25rem;
+    padding: 0.25rem;
   }
 
   .homeButton span {
@@ -282,8 +294,13 @@
   }
 
   .stats {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.25rem;
   }
+
+  .stats div { padding: 0.2rem; }
+  .stats span { font-size: 0.48rem; }
+  .stats strong { font-size: 0.85rem; }
 
   .boardArea {
     padding: 0.5rem;
@@ -291,10 +308,19 @@
 
   .board {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.4rem;
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    gap: 0.25rem;
   }
 
   .finished dl {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+@media (max-height: 43rem) {
+  .gameHeader { padding-block: 0.3rem; }
+  .titleBlock span { display: none; }
+  .homeButton,
+  .controls button { min-height: 2.2rem; padding-block: 0.25rem; }
+  .feedback { min-height: 1.1rem; font-size: 0.76rem; }
 }

@@ -17,6 +17,7 @@ import {
 } from './questLogic'
 import type { QuestTopicData } from './questTypes'
 import styles from './QuestGame.module.css'
+import { useGameMusic } from '../../hooks/useGameMusic'
 
 interface QuestGameProps {
   topic: QuestTopicData
@@ -24,6 +25,7 @@ interface QuestGameProps {
 }
 
 export function QuestGame({ topic, saveProgress = true }: QuestGameProps) {
+  useGameMusic(publicAsset('sounds/second game.mp3'))
   const navigate = useNavigate()
   const { recordGameResult, recentAchievements, clearRecentAchievements } = useStudent()
   const { settings: soundSettings, play, toggleMaster } = useSound()
