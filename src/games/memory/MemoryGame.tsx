@@ -17,6 +17,8 @@ import { useSound } from '../../hooks/useSound'
 import { useStudent } from '../../hooks/useStudent'
 import { VictoryScreen } from '../../components/victory/VictoryScreen'
 import { calculateStars } from '../../services/progress/progressService'
+import { useGameMusic } from '../../hooks/useGameMusic'
+import { publicAsset } from '../../utils/publicAsset'
 
 interface MemoryGameProps {
   topic: MemoryTopicData
@@ -24,6 +26,7 @@ interface MemoryGameProps {
 }
 
 export function MemoryGame({ topic, saveProgress = true }: MemoryGameProps) {
+  useGameMusic(publicAsset('sounds/first game.mp3'))
   const navigate = useNavigate()
   const { recordGameResult, recentAchievements, clearRecentAchievements } = useStudent()
   const { settings: soundSettings, play, toggleMaster } = useSound()

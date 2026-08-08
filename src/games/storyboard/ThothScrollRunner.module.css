@@ -1,5 +1,9 @@
 .stage {
+  display: grid;
   width: min(100%, 76rem);
+  height: 100%;
+  min-height: 0;
+  grid-template-rows: auto auto minmax(0, 1fr) auto auto;
   margin: 0 auto;
   color: var(--color-cream);
 }
@@ -9,7 +13,7 @@
   align-items: end;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.25rem;
 }
 
 .heading span {
@@ -32,8 +36,8 @@
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: 1rem;
-  min-height: 4.2rem;
-  padding: 0.55rem 1.25rem;
+  min-height: 3.2rem;
+  padding: 0.35rem 1rem;
   border: 3px solid #9a5b13;
   border-radius: 1.1rem 0.35rem 0.35rem 1.1rem;
   color: #321c0a;
@@ -51,10 +55,12 @@
 .scene {
   position: relative;
   isolation: isolate;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
   aspect-ratio: 16 / 9;
-  max-height: 62vh;
-  min-height: 25rem;
+  min-height: 0;
+  justify-self: center;
   overflow: hidden;
   border: 3px solid var(--color-gold-300);
   border-radius: 0 0 var(--radius-large) var(--radius-large);
@@ -209,10 +215,10 @@
 }
 .levelComplete button { min-height: 2.8rem; padding: 0.5rem 1rem; }
 
-.controls { display: flex; justify-content: center; gap: 0.7rem; margin-top: 0.65rem; }
-.controls button { min-width: 5.8rem; min-height: 3rem; font-size: 1.15rem; touch-action: manipulation; user-select: none; }
+.controls { display: flex; justify-content: center; gap: 0.45rem; margin-top: 0.25rem; }
+.controls button { min-width: 5.2rem; min-height: 2.5rem; font-size: 1rem; touch-action: manipulation; user-select: none; }
 .controls button span { font-size: 0.8rem; }
-.keyboardHint { margin: 0.35rem 0 0; color: #f7e5bd; font-size: 0.72rem; text-align: center; }
+.keyboardHint { margin: 0.15rem 0 0; color: #f7e5bd; font-size: 0.66rem; text-align: center; }
 
 @keyframes float { to { transform: translateY(-0.35rem); } }
 
@@ -220,14 +226,19 @@
   .heading p { display: none; }
   .scroll { grid-template-columns: 1fr; gap: 0.15rem; padding: 0.35rem 0.7rem; text-align: center; }
   .scroll > div { gap: 0.18rem; }
-  .scene { min-height: 22rem; max-height: 54vh; }
+  .scene { width: 100%; height: auto; max-height: 100%; min-height: 0; }
   .eventCard { width: 4.8rem; }
   .tablet { min-width: 4rem; min-height: 1.75rem; }
   .controls button { flex: 1; max-width: 8rem; }
 }
 
 @media (max-width: 32rem) {
-  .scene { min-height: 19rem; }
+  .heading h2 { font-size: 1rem; }
+  .heading span { font-size: 0.58rem; }
+  .scroll { min-height: 2.7rem; padding: 0.2rem 0.4rem; }
+  .scroll > strong { font-size: 0.65rem; }
+  .scroll > div { font-size: 0.72rem; }
+  .controls button { min-width: 0; min-height: 2.35rem; padding: 0.2rem; }
   .keyboardHint { display: none; }
 }
 

@@ -1,4 +1,9 @@
 .stage {
+  display: grid;
+  height: 100%;
+  min-height: 0;
+  grid-template-rows: auto minmax(0, 0.8fr) minmax(0, 1.2fr) auto auto;
+  gap: 0.3rem;
   color: var(--color-brown-950);
 }
 
@@ -7,7 +12,7 @@
   align-items: end;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0;
 }
 
 .heading span {
@@ -24,13 +29,16 @@
 .bank,
 .timeline {
   display: grid;
-  grid-template-columns: repeat(5, minmax(7rem, 1fr));
-  gap: 0.65rem;
+  min-height: 0;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 0.3rem;
+  overflow: hidden;
 }
 
 .bank {
-  margin-bottom: 1rem;
-  padding: 0.75rem;
+  margin-bottom: 0;
+  padding: 0.3rem;
   border: 1px dashed var(--color-gold-300);
   border-radius: var(--radius-medium);
   background: rgb(5 47 51 / 72%);
@@ -42,23 +50,24 @@
 
 .slot {
   position: relative;
-  min-height: 12rem;
-  padding: 1.55rem 0.35rem 0.35rem;
+  min-height: 0;
+  padding: 1.15rem 0.2rem 0.2rem;
+  overflow: hidden;
   border: 2px dashed var(--color-sand-300);
   border-radius: var(--radius-medium);
   background: rgb(255 240 202 / 75%);
   text-align: center;
 }
 
-.slot > p { margin: 3rem 0.25rem; font-weight: 800; }
+.slot > p { margin: 1rem 0.1rem; font-size: 0.7rem; font-weight: 800; }
 .position {
   position: absolute;
   z-index: 2;
   top: 0.25rem;
   left: 0.35rem;
   display: grid;
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 1.25rem;
+  height: 1.25rem;
   place-items: center;
   border-radius: 50%;
   color: var(--color-cream);
@@ -73,18 +82,24 @@
 .wrong .feedback { color: #a23c08; }
 
 .card {
+  display: grid;
+  height: 100%;
+  min-height: 0;
+  grid-template-rows: minmax(0, 1fr) auto;
+  overflow: hidden;
   cursor: grab;
   touch-action: none;
 }
 .card:active { cursor: grabbing; }
-.card label { display: block; margin-top: 0.25rem; }
-.card label span { display: block; margin-bottom: 0.15rem; font-size: 0.75rem; font-weight: 900; }
-.card select { width: 100%; min-height: 2.75rem; border: 1px solid var(--color-teal-900); border-radius: 0.35rem; color: var(--color-brown-950); background: var(--color-cream); font-weight: 700; }
+.card > div { width: auto; height: 100%; min-height: 0; aspect-ratio: auto; }
+.card label { display: block; margin-top: 0.1rem; }
+.card label span { display: none; }
+.card select { width: 100%; min-height: 1.7rem; padding: 0; border: 1px solid var(--color-teal-900); border-radius: 0.3rem; color: var(--color-brown-950); background: var(--color-cream); font-size: 0.65rem; font-weight: 700; }
 
-.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; margin-top: 1rem; }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem; margin-top: 0; }
 .actions button {
-  min-height: 2.75rem;
-  padding: 0.55rem 1rem;
+  min-height: 2.2rem;
+  padding: 0.3rem 0.7rem;
   border: 1px solid var(--color-gold-300);
   border-radius: var(--radius-small);
   color: var(--color-cream);
@@ -95,16 +110,22 @@
 }
 .actions button:disabled { cursor: not-allowed; opacity: 0.5; }
 .actions .continue { background: var(--color-gold-700); }
-.message { margin: 0.7rem 0 0; color: var(--color-cream); text-align: center; font-weight: 800; }
+.message { margin: 0; color: var(--color-cream); font-size: 0.75rem; text-align: center; font-weight: 800; }
 
 @media (max-width: 62rem) {
-  .bank, .timeline { grid-template-columns: repeat(3, minmax(7rem, 1fr)); }
+  .heading p { font-size: 0.75rem; }
 }
 
 @media (max-width: 38rem) {
-  .heading { display: block; }
-  .heading p { margin-top: 0.3rem; font-size: 0.82rem; }
-  .bank, .timeline { grid-template-columns: repeat(2, minmax(7rem, 1fr)); }
-  .slot { min-height: 10rem; }
-  .heading p, .feedback, .message { font-size: 1rem; }
+  .heading { align-items: center; }
+  .heading h2 { font-size: 1rem; }
+  .heading p { display: none; }
+  .bank, .timeline { gap: 0.18rem; }
+  .bank { padding: 0.18rem; }
+  .slot { padding: 0.95rem 0.08rem 0.08rem; border-width: 1px; }
+  .position { top: 0.1rem; left: 0.15rem; width: 1rem; height: 1rem; font-size: 0.62rem; }
+  .card select { min-height: 1.45rem; font-size: 0.54rem; }
+  .feedback { display: none; }
+  .actions button { min-height: 2rem; padding: 0.2rem 0.45rem; font-size: 0.65rem; }
+  .message { font-size: 0.62rem; }
 }

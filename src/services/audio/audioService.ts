@@ -19,6 +19,7 @@ let musicStarted = false
 let userActivated = false
 let musicTimer: number | null = null
 let musicStep = 0
+let gameMusic: HTMLAudioElement | null = null
 
 function loadSettings(): SoundSettings {
   try {
@@ -42,13 +43,20 @@ function ensureContext() {
 }
 
 function updateGains() {
+  const musicIsAudible = settings.musicEnabled && !settings.masterMuted && !document.hidden
+  if (gameMusic) {
+    gameMusic.volume = musicIsAudible ? settings.musicVolume : 0
+    if (musicIsAudible && userActivated) void gameMusic.play().catch(() => undefined)
+    else gameMusic.pause()
+  }
+
   if (!context || !effectsGain || !musicGain) return
   const now = context.currentTime
   const effectsLevel = settings.effectsEnabled && !settings.masterMuted ? settings.effectsVolume : 0
-  const musicLevel = settings.musicEnabled && !settings.masterMuted && !document.hidden ? settings.musicVolume : 0
+  const musicLevel = musicIsAudible && !gameMusic ? settings.musicVolume : 0
   effectsGain.gain.setTargetAtTime(effectsLevel, now, 0.03)
   musicGain.gain.setTargetAtTime(musicLevel, now, 0.15)
-  if (settings.musicEnabled && userActivated && !musicStarted) startMusic()
+  if (settings.musicEnabled && userActivated && !musicStarted && !gameMusic) startMusic()
 }
 
 function tone(frequency: number, duration: number, volume: number, startDelay = 0, type: OscillatorType = 'sine', destination = effectsGain) {
@@ -68,7 +76,7 @@ function tone(frequency: number, duration: number, volume: number, startDelay = 
 }
 
 function startMusic() {
-  if (musicStarted || !userActivated || !settings.musicEnabled) return
+  if (musicStarted || gameMusic || !userActivated || !settings.musicEnabled) return
   musicStarted = true
   ensureContext()
   if (!musicGain) { musicStarted = false; return }
@@ -131,6 +139,27 @@ export function updateSoundSettings(next: Partial<SoundSettings>) {
 
 export function toggleMasterSound() { updateSoundSettings({ masterMuted: !settings.masterMuted }) }
 
+export function setGameMusicTrack(source: string | null) {
+  if (gameMusic) {
+    gameMusic.pause()
+    gameMusic.removeAttribute('src')
+    gameMusic.load()
+    gameMusic = null
+  }
+
+  if (musicTimer !== null) window.clearInterval(musicTimer)
+  musicTimer = null
+  musicStarted = false
+
+  if (source) {
+    gameMusic = new Audio(source)
+    gameMusic.loop = true
+    gameMusic.preload = 'auto'
+  }
+
+  updateGains()
+}
+
 export function setupAudioSystem() {
   const activate = () => { userActivated = true; ensureContext(); startMusic() }
   document.addEventListener('pointerdown', activate, { once: true })
@@ -143,6 +172,10 @@ export function setupAudioSystem() {
 export function stopAudioSystem() {
   if (musicTimer !== null) window.clearInterval(musicTimer)
   musicTimer = null
+  if (gameMusic) {
+    gameMusic.pause()
+    gameMusic = null
+  }
   if (context) void context.close()
   context = null; effectsGain = null; musicGain = null; musicStarted = false
 }

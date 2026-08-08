@@ -12,6 +12,8 @@ import { useSound } from '../../hooks/useSound'
 import { useStudent } from '../../hooks/useStudent'
 import { VictoryScreen } from '../../components/victory/VictoryScreen'
 import { calculateStars } from '../../services/progress/progressService'
+import { useGameMusic } from '../../hooks/useGameMusic'
+import { publicAsset } from '../../utils/publicAsset'
 
 interface StoryboardGameProps {
   topic: StoryboardTopicData
@@ -19,6 +21,7 @@ interface StoryboardGameProps {
 }
 
 export function StoryboardGame({ topic, saveProgress = true }: StoryboardGameProps) {
+  useGameMusic(publicAsset('sounds/third game.mp3'))
   const navigate = useNavigate()
   const { recordGameResult, recentAchievements, clearRecentAchievements } = useStudent()
   const resultSaved = useRef(false)

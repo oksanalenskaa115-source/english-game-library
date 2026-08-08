@@ -1,4 +1,4 @@
-const CACHE_NAME = 'english-game-library-v6'
+const CACHE_NAME = 'english-game-library-v7'
 const scopeUrl = new URL(self.registration.scope)
 const fromScope = (path = '') => new URL(path, scopeUrl).toString()
 const APP_SHELL = [
