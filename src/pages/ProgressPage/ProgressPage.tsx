@@ -7,7 +7,7 @@ import { loadGameResults } from '../../services/progress/progressService'
 import type { GameType } from '../../types'
 import styles from './ProgressPage.module.css'
 
-const gameNames: Record<GameType, string> = { memory: 'Mummy Memory', quest: 'Verb Treasure Quest', storyboard: 'Adventure Storyboard' }
+const gameNames: Record<GameType, string> = { memory: 'Mummy Memory', quest: 'Temple Door Challenge', storyboard: 'Adventure Storyboard' }
 const gameSymbols: Record<GameType, string> = { memory: '◆', quest: '♢', storyboard: '▦' }
 const formatTime = (seconds?: number) => seconds === undefined ? '—' : `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`
 

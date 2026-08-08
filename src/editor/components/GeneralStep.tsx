@@ -14,7 +14,7 @@ export function GeneralStep({ topic, onChange }: { topic: EditorTopic; onChange:
     <h2>Шаг 1 — General Information</h2>
     <div className="editorFormGrid">
       <label>Название темы *<input value={topic.title} maxLength={80} onChange={(event) => onChange({ ...topic, title: event.target.value })} /></label>
-      <label>Тип игры *<select value={topic.gameType} onChange={(event) => changeType(event.target.value as GameType)}><option value="memory">Mummy Memory</option><option value="quest">Verb Treasure Quest</option><option value="storyboard">Adventure Storyboard</option></select></label>
+      <label>Тип игры *<select value={topic.gameType} onChange={(event) => changeType(event.target.value as GameType)}><option value="memory">Mummy Memory</option><option value="quest">Temple Door Challenge</option><option value="storyboard">Adventure Storyboard</option></select></label>
       <label className="editorWide">Короткое описание *<textarea value={topic.description} maxLength={180} rows={3} onChange={(event) => onChange({ ...topic, description: event.target.value })} /><small>{topic.description.length} / 180</small></label>
       <label>Сложность<select value={topic.difficulty} onChange={(event) => onChange({ ...topic, difficulty: event.target.value as EditorTopic['difficulty'] })}><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></label>
       <label>Звёзд за прохождение<select value={topic.maxStars} onChange={(event) => onChange({ ...topic, maxStars: Number(event.target.value) as 1 | 2 | 3 })}><option value="1">1</option><option value="2">2</option><option value="3">3 (рекомендуется)</option></select></label>

@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { HowToPlayModal } from '../../components/modals/HowToPlayModal'
 import { howToPlayInstructions } from '../../data/howToPlay'
 import { CompleteStory } from './CompleteStory'
-import { SentenceStage } from './SentenceStage'
+import { ThothScrollRunner } from './ThothScrollRunner'
 import { StoryOrder } from './StoryOrder'
 import { calculateStoryboardAccuracy, getProvisionalStars } from './storyboardLogic'
-import type { SentenceMode, StoryboardTopicData } from './storyboardTypes'
+import type { StoryboardTopicData } from './storyboardTypes'
 import styles from './StoryboardGame.module.css'
 import { useSound } from '../../hooks/useSound'
 import { useStudent } from '../../hooks/useStudent'
@@ -27,11 +27,9 @@ export function StoryboardGame({ topic, saveProgress = true }: StoryboardGamePro
   const [stage, setStage] = useState<1 | 2 | 3>(1)
   const [stageProgress, setStageProgress] = useState(0)
   const [score, setScore] = useState(0)
-  const [hintsRemaining, setHintsRemaining] = useState(3)
   const [firstCheckCorrect, setFirstCheckCorrect] = useState(0)
   const [sentenceSuccesses, setSentenceSuccesses] = useState(0)
   const [elapsedSeconds, setElapsedSeconds] = useState(0)
-  const [mode, setMode] = useState<SentenceMode | null>(null)
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false)
   const [showVictory, setShowVictory] = useState(false)
 
@@ -58,11 +56,9 @@ export function StoryboardGame({ topic, saveProgress = true }: StoryboardGamePro
     setStage(1)
     setStageProgress(0)
     setScore(0)
-    setHintsRemaining(3)
     setFirstCheckCorrect(0)
     setSentenceSuccesses(0)
     setElapsedSeconds(0)
-    setMode(null)
     setShowVictory(false)
     resultSaved.current = false
     clearRecentAchievements()
@@ -89,9 +85,8 @@ export function StoryboardGame({ topic, saveProgress = true }: StoryboardGamePro
   const statusItems = useMemo(() => [
     { label: 'Progress', value: `${overallProgress}%` },
     { label: 'Score', value: score.toString() },
-    { label: 'Hints', value: hintsRemaining.toString() },
     { label: 'Stars', value: stars === 0 ? '—' : `${stars} / 3` },
-  ], [hintsRemaining, overallProgress, score, stars])
+  ], [overallProgress, score, stars])
 
   if (showVictory) return <VictoryScreen gameTitle="Adventure Storyboard" score={score} accuracy={accuracy} elapsedSeconds={elapsedSeconds} stars={calculateStars(accuracy)} newAchievements={recentAchievements} onPlayAgain={restart} onChooseAnotherGame={chooseAnotherGame} onHome={goHome} />
 
@@ -118,40 +113,20 @@ export function StoryboardGame({ topic, saveProgress = true }: StoryboardGamePro
       </section>
 
       {stage === 1 && (
-        <StoryOrder
+        <ThothScrollRunner
           cards={topic.cards}
-          hintsRemaining={hintsRemaining}
-          onProgress={setStageProgress}
-          onUseHint={() => { setHintsRemaining((current) => current - 1); addScore(-5) }}
           onAddScore={addScore}
-          onComplete={(correct) => { play('levelComplete'); setFirstCheckCorrect(correct); setStage(2); setStageProgress(0) }}
+          onProgress={setStageProgress}
+          onComplete={(successes) => { play('levelComplete'); setSentenceSuccesses(successes); setStage(2); setStageProgress(0) }}
         />
       )}
 
-      {stage === 2 && !mode && (
-        <section className={styles.modeChoice} aria-labelledby="choose-mode-title">
-          <p>Stage 2</p>
-          <h2 id="choose-mode-title">Choose Your Mode</h2>
-          <div>
-            <button type="button" onClick={() => setMode('support')}>
-              <strong>Support Mode</strong>
-              <span>Choose the correct sentence from three answers. Up to 10 points.</span>
-            </button>
-            <button type="button" onClick={() => setMode('challenge')}>
-              <strong>Challenge Mode</strong>
-              <span>Change the base verb to Past Simple and write the sentence yourself. Up to 15 points.</span>
-            </button>
-          </div>
-        </section>
-      )}
-
-      {stage === 2 && mode && (
-        <SentenceStage
+      {stage === 2 && (
+        <StoryOrder
           cards={topic.cards}
-          mode={mode}
           onAddScore={addScore}
           onProgress={setStageProgress}
-          onComplete={(successes) => { play('victory'); setSentenceSuccesses(successes); setStage(3); setStageProgress(topic.cards.length) }}
+          onComplete={(correct) => { play('victory'); setFirstCheckCorrect(correct); setStage(3); setStageProgress(topic.cards.length) }}
         />
       )}
 
