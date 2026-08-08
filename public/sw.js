@@ -1,4 +1,4 @@
-const CACHE_NAME = 'english-game-library-v1'
+const CACHE_NAME = 'english-game-library-v6'
 const scopeUrl = new URL(self.registration.scope)
 const fromScope = (path = '') => new URL(path, scopeUrl).toString()
 const APP_SHELL = [
@@ -6,8 +6,9 @@ const APP_SHELL = [
   fromScope('favicon.svg'),
   fromScope('site.webmanifest'),
   fromScope('images/optimized/memory-cover-new.webp'),
-  fromScope('images/optimized/quest-cover-new.webp'),
-  fromScope('images/optimized/storyboard-cover-new.webp'),
+  fromScope('images/optimized/quest-interface-cover.webp'),
+  fromScope('images/optimized/thoth-library-platformer.webp'),
+  fromScope('images/optimized/adventure-storyboard-nefertiti-cover.webp'),
   fromScope('images/optimized/storyboard-cards.webp'),
   fromScope('images/optimized/back-card.webp'),
   fromScope('images/optimized/victory-screen.webp'),

@@ -6,7 +6,7 @@ import { deleteTopic, listTopics, saveTopic } from '../../services/storage/topic
 import { lockTeacherSession } from '../../services/security/teacherPin'
 import styles from './TeacherPage.module.css'
 
-const gameNames = { memory: 'Mummy Memory', quest: 'Verb Treasure Quest', storyboard: 'Adventure Storyboard' }
+const gameNames = { memory: 'Mummy Memory', quest: 'Temple Door Challenge', storyboard: 'Adventure Storyboard' }
 
 function downloadTopic(topic: EditorTopic) {
   const blob = new Blob([JSON.stringify(topic, null, 2)], { type: 'application/json' })

@@ -9,14 +9,12 @@ type PositionStatus = 'correct' | 'wrong' | undefined
 
 interface StoryOrderProps {
   cards: StoryCardData[]
-  hintsRemaining: number
-  onUseHint: () => void
   onAddScore: (points: number) => void
   onProgress: (placed: number) => void
   onComplete: (firstCheckCorrect: number) => void
 }
 
-export function StoryOrder({ cards, hintsRemaining, onUseHint, onAddScore, onProgress, onComplete }: StoryOrderProps) {
+export function StoryOrder({ cards, onAddScore, onProgress, onComplete }: StoryOrderProps) {
   const { play } = useSound()
   const [bank, setBank] = useState(() => shuffleStoryCards(cards))
   const [timeline, setTimeline] = useState<(StoryCardData | null)[]>(() => cards.map(() => null))
@@ -94,18 +92,6 @@ export function StoryOrder({ cards, hintsRemaining, onUseHint, onAddScore, onPro
     setMessage(`${correctCards.length} of ${cards.length} pictures are in the correct position.`)
   }
 
-  const useHint = () => {
-    if (hintsRemaining === 0 || isComplete) return
-    const targetIndex = timeline.findIndex((card, index) => card?.order !== index + 1)
-    if (targetIndex < 0) return
-    const correctCard = allCards.find((card) => card.order === targetIndex + 1)
-    if (!correctCard) return
-    placeCard(correctCard.id, targetIndex)
-    onUseHint()
-    play('hint')
-    setMessage(`Hint: picture ${correctCard.order} is now in its correct position. -5 points.`)
-  }
-
   const renderCard = (card: StoryCardData) => (
     <article
       className={styles.card}
@@ -129,8 +115,8 @@ export function StoryOrder({ cards, hintsRemaining, onUseHint, onAddScore, onPro
   return (
     <section className={styles.stage} aria-labelledby="story-order-title">
       <div className={styles.heading}>
-        <div><span>Stage 1</span><h2 id="story-order-title">Story Order</h2></div>
-        <p>Drag, tap and choose a position, or use the Move menu.</p>
+        <div><span>Stage 2</span><h2 id="story-order-title">Build the Story from Pictures</h2></div>
+        <p>Choose the correct order for Nefertiti’s day.</p>
       </div>
 
       {bank.length > 0 && <div className={styles.bank} aria-label="Pictures waiting to be placed">{bank.map(renderCard)}</div>}
@@ -154,8 +140,7 @@ export function StoryOrder({ cards, hintsRemaining, onUseHint, onAddScore, onPro
 
       <div className={styles.actions}>
         <button type="button" onClick={checkOrder} disabled={timeline.some((card) => !card)}>Check Order</button>
-        <button type="button" onClick={useHint} disabled={hintsRemaining === 0 || isComplete}>Hint ({hintsRemaining})</button>
-        {isComplete && <button className={styles.continue} type="button" onClick={() => onComplete(firstFullCheck.current ?? cards.length)}>Make Sentences →</button>}
+        {isComplete && <button className={styles.continue} type="button" onClick={() => onComplete(firstFullCheck.current ?? cards.length)}>Read the Complete Story →</button>}
       </div>
       <p className={styles.message} aria-live="polite">{message}</p>
     </section>

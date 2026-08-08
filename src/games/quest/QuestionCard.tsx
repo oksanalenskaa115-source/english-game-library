@@ -5,21 +5,30 @@ interface QuestionCardProps {
   question: QuestQuestionData
   selectedIndexes: number[]
   isResolved: boolean
-  wasRevealed: boolean
+  shotIndex: number | null
+  shotId: number
   onSelect: (index: 0 | 1 | 2) => void
 }
 
 const optionLabels = ['A', 'B', 'C'] as const
 
-export function QuestionCard({ question, selectedIndexes, isResolved, wasRevealed, onSelect }: QuestionCardProps) {
+export function QuestionCard({
+  question,
+  selectedIndexes,
+  isResolved,
+  shotIndex,
+  shotId,
+  onSelect,
+}: QuestionCardProps) {
   return (
     <section className={styles.card} aria-labelledby={`question-${question.id}`}>
-      <div className={styles.sentenceBlock}>
+      <div className={styles.questionPanel}>
+        <span className={styles.mission}>Choose the right form and shoot!</span>
         <p id={`question-${question.id}`}>{question.sentence}</p>
-        <span>({question.verb})</span>
+        <span className={styles.verb}>({question.verb})</span>
       </div>
 
-      <div className={styles.options} role="group" aria-label="Answer choices">
+      <div className={styles.options} role="group" aria-label="Magical answer targets">
         {question.options.map((option, index) => {
           const typedIndex = index as 0 | 1 | 2
           const isSelected = selectedIndexes.includes(index)
@@ -27,7 +36,7 @@ export function QuestionCard({ question, selectedIndexes, isResolved, wasReveale
           const showCorrect = isResolved && isCorrect
           const showWrong = isSelected && !isCorrect
           const classes = [
-            styles.option,
+            styles.target,
             showCorrect ? styles.correct : '',
             showWrong ? styles.wrong : '',
           ].filter(Boolean).join(' ')
@@ -35,22 +44,25 @@ export function QuestionCard({ question, selectedIndexes, isResolved, wasReveale
           return (
             <button
               className={classes}
-              key={`${option}-${index}`}
+              key={`${question.id}-${option}-${index}`}
               type="button"
               onClick={() => onSelect(typedIndex)}
               disabled={isResolved || showWrong}
-              aria-label={`${optionLabels[index]}. ${option}${showCorrect ? '. Correct answer' : showWrong ? '. Incorrect answer' : ''}`}
+              aria-label={`Target ${optionLabels[index]}: ${option}${showCorrect ? '. Correct answer' : showWrong ? '. Incorrect answer' : ''}`}
             >
               <span className={styles.optionLabel}>{optionLabels[index]}</span>
               <span className={styles.optionText}>{option}</span>
-              {showCorrect && <span className={styles.resultIcon} aria-hidden="true">✓</span>}
-              {showWrong && <span className={styles.resultIcon} aria-hidden="true">×</span>}
+              <span className={styles.crosshair} aria-hidden="true" />
+              {shotIndex === index && (
+                <span className={styles.impact} key={`${shotId}-${index}`} aria-hidden="true" />
+              )}
+              {showCorrect && <span className={styles.resultIcon} aria-hidden="true">&#10022;</span>}
+              {showWrong && <span className={styles.resultIcon} aria-hidden="true">&#10005;</span>}
             </button>
           )
         })}
       </div>
 
-      {wasRevealed && <p className={styles.revealed}>The correct answer is highlighted above.</p>}
     </section>
   )
 }

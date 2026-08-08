@@ -16,7 +16,7 @@ export function ContentStep({ topic, onChange }: { topic: EditorTopic; onChange:
 
   if (topic.gameType === 'quest') {
     const update = (index: number, value: EditorQuestQuestion) => onChange({ ...topic, questions: topic.questions.map((question, itemIndex) => itemIndex === index ? value : question) })
-    return <section><h2>Шаг 2 — Add Content: Verb Treasure Quest</h2><p>Добавьте от 5 до 30 вопросов. В предложении нужен один пропуск ___.</p>
+    return <section><h2>Шаг 2 — Add Content: Temple Door Challenge</h2><p>Добавьте от 5 до 30 вопросов. В предложении нужен один пропуск ___.</p>
       <div className="editorItems">{topic.questions.map((question, index) => <article className="editorItem" key={question.id}><header><strong>Вопрос {index + 1}</strong><button type="button" onClick={() => onChange({ ...topic, questions: topic.questions.filter((_, itemIndex) => itemIndex !== index) })}>Удалить</button></header><div className="editorFormGrid">
         <label className="editorWide">Предложение *<input value={question.sentence} placeholder="She ___ the treasure yesterday." onChange={(event) => update(index, { ...question, sentence: event.target.value })} /></label><label>Глагол в скобках *<input value={question.verb} onChange={(event) => update(index, { ...question, verb: event.target.value })} /></label>
         {question.options.map((option, optionIndex) => <label key={optionIndex}>Вариант {String.fromCharCode(65 + optionIndex)} *<input value={option} onChange={(event) => { const options = [...question.options] as [string, string, string]; options[optionIndex] = event.target.value; update(index, { ...question, options }) }} /></label>)}

@@ -1,5 +1,3 @@
-export type SentenceMode = 'support' | 'challenge'
-
 export interface StoryCardData {
   id: string
   order: number

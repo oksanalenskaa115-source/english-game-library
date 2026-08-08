@@ -3,8 +3,8 @@ import type { QuestTopicData } from '../games/quest/questTypes'
 export const questTopics: QuestTopicData[] = [
   {
     id: 'past-simple-treasure',
-    title: 'Past Simple Treasure',
-    description: 'Choose the correct verb form.',
+    title: 'Past Simple Temple',
+    description: 'Shoot the correct verb form.',
     questions: [
       {
         id: 'find-treasure',
